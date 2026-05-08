@@ -3,14 +3,18 @@
 import { Button } from "@workspace/ui/components/button"
 import { add } from "@workspace/math/add"
 
-import { useMutation, useQuery } from "convex/react";
+import { Authenticated, Unauthenticated, useMutation, useQuery } from "convex/react";
 import { api } from "@workspace/backend/_generated/api";
+import { SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function Page() {
 
   const users = useQuery(api.users.getMany);
   const addUser = useMutation(api.users.add);
   return (
+    <>
+    <Authenticated>
+      <UserButton/>
     <div className="flex min-h-svh p-6">
       <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
         <div>
@@ -26,5 +30,11 @@ export default function Page() {
         </div>
       </div>
     </div>
+    </Authenticated>
+    <Unauthenticated>
+      <p>must be signed in</p>
+      <SignInButton/>
+    </Unauthenticated>
+    </>
   )
 }
