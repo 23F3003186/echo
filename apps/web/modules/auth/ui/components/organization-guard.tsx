@@ -7,7 +7,7 @@ import { OrgSelectionView } from "../views/org-selection-view";
 
 
 
-export const OrganizationGard = ( {children} : {children: React.ReactNode}) => {
+export const OrganizationGuard = ( {children} : {children: React.ReactNode}) => {
 
     const { organization } = useOrganization();
 
