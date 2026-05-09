@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "@workspace/ui/globals.css"
 import { Providers } from "@/components/provider"
 import { cn } from "@workspace/ui/lib/utils";
+import { AuthGuard } from "@/modules/auth/ui/components/auth-guard";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'})
 
@@ -23,7 +24,9 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
     >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

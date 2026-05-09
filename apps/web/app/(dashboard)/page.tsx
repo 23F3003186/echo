@@ -3,9 +3,9 @@
 import { Button } from "@workspace/ui/components/button"
 import { add } from "@workspace/math/add"
 
-import { Authenticated, Unauthenticated, useMutation, useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "@workspace/backend/_generated/api";
-import { SignInButton, UserButton } from "@clerk/nextjs";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 export default function Page() {
 
@@ -13,8 +13,11 @@ export default function Page() {
   const addUser = useMutation(api.users.add);
   return (
     <>
-    <Authenticated>
+    <div className="flex flex-col gap-4">
       <UserButton/>
+      <OrganizationSwitcher hidePersonal/>
+    </div>
+
     <div className="flex min-h-svh p-6">
       <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
         <div>
@@ -23,18 +26,13 @@ export default function Page() {
         </div>
 
         <div>
-          {add(1,2)}
+          {add(2,2)}
 
           {JSON.stringify(users)}
           
         </div>
       </div>
     </div>
-    </Authenticated>
-    <Unauthenticated>
-      <p>must be signed in</p>
-      <SignInButton/>
-    </Unauthenticated>
     </>
   )
 }
