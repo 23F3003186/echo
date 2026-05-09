@@ -13,7 +13,11 @@ export function Providers({ children }: {children: React.ReactNode }) {
     return (
         
         <ThemeProvider>
-            <ClerkProvider>
+            <ClerkProvider
+                taskUrls={{
+                    "choose-organization": "/org-selection",
+                }}
+            >
                 <ConvexProviders>
                     {children}
                 </ConvexProviders>
